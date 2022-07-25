@@ -51,8 +51,12 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  if (value1 === Number.MAX_VALUE && value2 === Number.MAX_VALUE) {
+    const diff = value1 - value2;
+    return Number.MAX_VALUE - (diff / 2);
+  }
+  return (value1 + value2) / 2;
 }
 
 /**
@@ -161,7 +165,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelepipedDiagonal(a, b, c) {
-  return Math.sqrt(a * a + b * b + c * c);
+  return Math.sqrt((a * a) + (b * b) + (c * c));
 }
 
 
@@ -190,7 +194,7 @@ function roundToPowerOfTen(num, pow) {
  * Returns true is the number is prime; otherwise false.
  * See: https://en.wikipedia.org/wiki/Primality_test
  *
- * @param {number} n
+ * @param {number} num
  * @return {boolean}
  *
  * @example:
@@ -203,8 +207,11 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(num) {
+  if (num === 2 || num === 3) return true;
+  if (num <= 1 || num % 2 === 0 || num % 3 === 0) return false;
+  for (let i = 5; i * i <= num; i += 6) if (num % i === 0 || num % (i + 2) === 0) return false;
+  return true;
 }
 
 /**
